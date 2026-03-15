@@ -29,16 +29,6 @@ Canframe_8bit* create_canframe_8bit(){
     }
     return NULL;
 
-
-
-
-   /* 
-   Canframe_8bit* self =(Canframe_8bit*)malloc(sizeof(Canframe_8bit));
-    if(self!=NULL){
-        self->frame = 0x00;
-    }
-    return self;
-    */
 }
 
 void destroy_canframe_8bit(Canframe_8bit* self){
@@ -48,16 +38,7 @@ void destroy_canframe_8bit(Canframe_8bit* self){
         pool_occupied[index]= 0;
         global_mem[index].frame = 0;
     }
-
-
-
-    /*
-    if(self!=NULL){
-        free(self);
-    }*/
 }
-
-
 
 
 // setters
@@ -167,15 +148,15 @@ uint_64 get_full_canframe(const Canframe_8bit* self){
     return self->frame;
 }
 
-
+// testing
 int main(){
     Canframe_8bit* cf = create_canframe_8bit();
     
-    set_can_dlc(cf, 1);
+    set_can_identifier(cf, 0xF);
 
     uint_64 a = get_full_canframe(cf);
 
-    printf("%d",a);
+    printf("%llX",a);
 
 
     return 0;
